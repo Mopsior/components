@@ -1,11 +1,12 @@
 import type { MDXComponents } from 'mdx/types'
 import Link from 'next/link'
 import { Url } from 'url'
+import { Code } from './features/code-block'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
     return {
         h2: (props) => (
-            <h2 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-10' {...props} />
+            <h2 className='scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0 mt-10 mb-4' {...props} />
         ),
         h3: (props) => (
             <h3 className='scroll-m-20 text-2xl font-semibold tracking-tight mt-8' {...props} />
@@ -20,11 +21,17 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <ul className='my-6 ml-6 list-disc [&>li]:mt-2' {...props} />
         ),
         code: (props) => (
-            <code className='relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold' {...props} />
+            <code {...props} />
         ),
         a: (props) => (
             <Link className='underline underline-offset-4' {...props} href={props.href as unknown as Url} />
         ),
+        pre: (props) => {
+            const children = props.children as React.ReactElement
+            return (
+                <Code code={children.props.children} language={children.props.className ? children.props.className.substr(9) : '' } className="mt-8" {...props} />
+            )
+        },
         ...components,
     }
 }

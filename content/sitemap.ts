@@ -3,7 +3,7 @@ export const sitemap = {
         name: 'Components',
         documents: [
             {
-                name: 'Button',
+                name: 'Button meow meow meow',
                 url: '/components/button'
             },
             {

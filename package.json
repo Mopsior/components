@@ -15,6 +15,7 @@
     "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-toast": "^1.2.5",
     "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -23,8 +24,11 @@
     "motion": "^12.0.3",
     "next": "14.2.23",
     "next-themes": "^0.4.4",
+    "prism-react-renderer": "^2.4.1",
     "react": "^18",
+    "react-code-block": "^1.1.1",
     "react-dom": "^18",
+    "rehype-starry-night": "^2.2.0",
     "remark-frontmatter": "^5.0.0",
     "remark-mdx-frontmatter": "^5.0.0",
     "tailwind-merge": "^2.6.0",
@@ -39,6 +43,7 @@
     "eslint-config-next": "14.2.23",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tailwindcss-motion": "^1.0.1",
     "typescript": "^5"
   }
 }
