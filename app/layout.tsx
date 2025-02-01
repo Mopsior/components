@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono'
 import { Navbar } from "@/features/navbar";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -21,8 +22,10 @@ export default function RootLayout({
                 className={`antialiased bg-[radial-gradient(#e3e3e3_1.8px,_white_1.8px)] md:bg-[radial-gradient(#e3e3e3_1.2px,_white_1.2px)] [background-size:_18px_18px] dark:bg-[radial-gradient(#1a1a1a_1.8px,_black_1.8px)] md:dark:bg-[radial-gradient(#1a1a1a_1.2px,_black_1.2px)] dark:[background-size:_18px_18px] w-full`}
             >
                 <ThemeProvider attribute='class'>
-                    <Navbar />
-                    {children}
+                    <TooltipProvider>
+                        <Navbar />
+                        {children}
+                    </TooltipProvider>
                 </ThemeProvider>
             </body>
         </html>

@@ -1,4 +1,3 @@
-import { ThemeSwitch } from "@/features/theme-switch";
 import Image from "next/image";
 
 export default function Home() {

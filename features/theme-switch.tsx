@@ -3,6 +3,14 @@
 import { MonitorCog, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import { AnimatePresence, motion } from "motion/react"
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+
+const switchAnimation = {
+    initial: { y: 20},
+    exit: { y: -20},
+    animate: { y: 0}
+}
 
 export const ThemeSwitch = () => {
     const [mounted, setMounted] = useState(false)
@@ -33,10 +41,24 @@ export const ThemeSwitch = () => {
     }
     
     return (
-        <div onClick={() => { handleThemeChange() }} className="cursor-pointer">
-        { theme === 'dark' && <Moon />}
-        { theme === 'light' && <Sun />}
-        { theme == 'system' && <MonitorCog />}
-        </div>
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <div onClick={() => { handleThemeChange() }} className="cursor-pointer overflow-hidden">
+                    <AnimatePresence>
+                        { theme === 'dark' && <MotionMoon initial='initial' exit='exit' animate='animate' variants={switchAnimation}  />}
+                        { theme === 'light' && <MotionSun initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
+                        { theme == 'system' && <MotionMonitorCog initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
+                    </AnimatePresence>
+                </div>
+            </TooltipTrigger>
+            <TooltipContent>
+                <p>Change theme</p>
+                <span className="text-sm text-muted-foreground">({theme})</span>
+            </TooltipContent>
+        </Tooltip>
     )
 }
+
+const MotionMoon = motion.create(Moon)
+const MotionSun = motion.create(Sun)
+const MotionMonitorCog = motion.create(MonitorCog)

@@ -6,7 +6,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
 import { ThemeSwitch } from "./theme-switch"
-import { sitemap } from "@/content/sitemap"
+import { motion } from "motion/react"
+import { firstComponentURL } from "@/utils/first-component-url"
 
 export const Navbar = () => {
     const pathname = usePathname()
@@ -15,7 +16,7 @@ export const Navbar = () => {
         <>
             <nav className="flex fixed top-5 left-1/2 transform -translate-x-1/2 text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 *:rounded-lg *:px-6 *:py-2 text-sans shadow-md invisible md:visible z-50">
                 <p className="font-mono font-semibold">mopsior/components</p>
-                <NavButtons href={sitemap.components.documents[0].url} selected={pathname.startsWith('/components')}>
+                <NavButtons href={firstComponentURL} selected={pathname.startsWith('/components')}>
                     Components
                 </NavButtons>
                 <NavButtons href="/" selected={pathname === '/'}>
@@ -38,11 +39,16 @@ export const Navbar = () => {
 
 const NavButtons = ({ href, children, selected }: { href: string, children: ReactNode, selected?: boolean }) => {
     return (
-        <Link href={href} className={cn('transition-all duration-150', {
-            'bg-background shadow-md hover:cursor-default': selected,
+        <Link href={href} className={cn('transition-all duration-150 relative', {
+            'text-primary': selected,
             'text-foreground opacity-50 hover:text-primary hover:opacity-100': !selected
         })}>
             {children}
+            {selected && <motion.span
+                layoutId="tabs"
+                transition={{ type: "spring", duration: 0.5 }}
+                className="absolute inset-0 -z-10 bg-background shadow-md rounded-lg hover:cursor-default"
+            ></motion.span>}
         </Link>
     )
 }

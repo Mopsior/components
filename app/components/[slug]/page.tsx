@@ -1,4 +1,6 @@
-import { redirect } from "next/navigation"
+import { catchError } from "@/utils/catch-error"
+import { firstComponentURL } from "@/utils/first-component-url"
+import { notFound, redirect } from "next/navigation"
 
 export default async function Page({
     params,
@@ -7,9 +9,12 @@ export default async function Page({
 }) {
     const slug = (await params).slug
     if (slug.length <= 0) {
-        redirect('/')
+        redirect(firstComponentURL)
     }
-    const mdxContent = await import(`@/content/${slug}.mdx`)
+    const [error, mdxContent] = await catchError(import(`@/content/${slug}.mdx`))
+    if (error) {
+        notFound()
+    }
 
     return (
         <div className="md:p-10 p-6 pb-10 gap-y-8 flex flex-col">
