@@ -1,10 +1,11 @@
 'use client'
 
-import { MonitorCog, Moon, Sun } from "lucide-react"
+import { LoaderCircle, MonitorCog, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { MotionMonitorCog, MotionMoon, MotionSun } from "@/lib/motion-components"
 
 const switchAnimation = {
     initial: { y: 20},
@@ -21,7 +22,7 @@ export const ThemeSwitch = () => {
     }, [])
 
     if (!mounted) {
-        return null
+        return <LoaderCircle className="animate-spin" />
     }
 
     const handleThemeChange = () => {
@@ -58,7 +59,3 @@ export const ThemeSwitch = () => {
         </Tooltip>
     )
 }
-
-const MotionMoon = motion.create(Moon)
-const MotionSun = motion.create(Sun)
-const MotionMonitorCog = motion.create(MonitorCog)

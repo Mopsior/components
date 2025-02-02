@@ -24,7 +24,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             <code {...props} />
         ),
         a: (props) => (
-            <Link className='relative z-10 before:content=[""] before:bg-primary before:absolute before:w-full before:h-1 before:-z-10 before:-bottom-1 before:transition-all before:hover:h-[130%] hover:text-background before:rounded-lg before:hover:rounded-none' {...props} href={props.href as unknown as Url} />
+            <Link className='relative z-10 before:content=[""] before:bg-primary before:absolute before:w-full before:h-[2px] before:-z-10 before:-bottom-[2px] before:transition-all before:hover:h-[130%] hover:text-background' {...props} href={props.href as unknown as Url} />
         ),
         pre: (props) => {
             const children = props.children as React.ReactElement
