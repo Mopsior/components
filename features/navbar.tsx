@@ -9,20 +9,21 @@ import { ThemeSwitch } from "./theme-switch"
 import { motion } from "motion/react"
 import { firstComponentURL } from "@/utils/first-component-url"
 import { SearchBar } from "./search-bar"
+import { ClassNameValue } from "tailwind-merge"
 
 export const Navbar = () => {
     const pathname = usePathname()
 
     return (
         <>
-            <nav className="flex fixed top-5 left-1/2 transform -translate-x-1/2 text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 *:rounded-lg *:px-6 *:py-2 text-sans shadow-lg invisible md:visible z-50">
+            <nav className="flex fixed top-5 left-1/2 transform -translate-x-1/2 text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 *:rounded-lg *:px-6 *:py-2 text-sans shadow-lg invisible md:visible">
                 <p className="font-mono font-semibold">mopsior/components</p>
-                <NavButtons href={firstComponentURL} selected={pathname.startsWith('/components')}>
+                <Tabs href={firstComponentURL} selected={pathname.startsWith('/components')}>
                     Components
-                </NavButtons>
-                <NavButtons href="/" selected={pathname === '/'}>
+                </Tabs>
+                <Tabs href="/" selected={pathname === '/'}>
                     About
-                </NavButtons>
+                </Tabs>
             </nav>
             <div className="fixed top-5 right-5 flex gap-x-2 z-50">
                 <SearchBar className='hidden md:flex' />
@@ -32,20 +33,18 @@ export const Navbar = () => {
                             <Github />
                         </RightButtons>
                     </Link>
-                    <RightButtons>
-                        <ThemeSwitch />
-                    </RightButtons>
+                    <ThemeSwitch />
                 </nav>
             </div>
         </>
     )
 }
 
-const NavButtons = ({ href, children, selected }: { href: string, children: ReactNode, selected?: boolean }) => {
+const Tabs = ({ href, children, selected }: { href: string, children: ReactNode, selected?: boolean }) => {
     return (
         <Link href={href} className={cn('transition-all duration-150 relative', {
             'text-primary': selected,
-            'text-foreground opacity-50 hover:text-primary hover:opacity-100': !selected
+            'text-muted-foreground hover:text-primary': !selected
         })}>
             {children}
             {selected && <motion.span
@@ -57,9 +56,9 @@ const NavButtons = ({ href, children, selected }: { href: string, children: Reac
     )
 }
 
-const RightButtons = ({ children }: { children: ReactNode }) => {
+export const RightButtons = ({ children, className }: { children: ReactNode, className?: ClassNameValue }) => {
     return (
-        <div className="p-2 hover:bg-background hover:shadow-lg rounded-lg transition-all duration-300">
+        <div className={cn("p-2 hover:bg-background hover:shadow-lg rounded-lg transition-all duration-300", className)}>
             {children}
         </div>
     )

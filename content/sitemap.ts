@@ -1,27 +1,26 @@
+export type SitemapDocumentType = {
+    name: string
+    url: string
+    keywords?: string[]
+}
+
 export const sitemap = {
     components: {
         name: 'Components',
         documents: [
             {
-                name: 'Button meow meow meow',
-                url: '/components/button'
-            },
-            {
-                name: 'OTP code',
-                url: '/components/test'
-            },
+                name: 'Callout',
+                url: '/components/callout',
+            }
         ]
     },
     info: {
-        name: 'Info',
+        name: 'Testing',
         documents: [
             {
-                name: 'How to integrate',
-                url: '/components/integrate'
-            },
-            {
-                name: 'Types',
-                url: '/components/types'
+                name: 'Test document',
+                url: '/components/example',
+                keywords: ['test', 'example']
             }
         ]
     }
