@@ -1,7 +1,7 @@
 'use client'
 
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
-import { sitemap } from "@/content/sitemap"
+import { sitemap, SitemapDocumentType } from "@/content/sitemap"
 import { cn } from "@/lib/utils"
 import { getPlatform } from "@/utils/get-platform"
 import { FileText, Github, House, MonitorCog, Moon, Sun } from "lucide-react"
@@ -39,14 +39,14 @@ export const SearchBar = ({ className, ...props }: { className?: ClassNameValue 
 
     return (
         <>
-            <motion.div className={cn("flex px-4 py-2 text-center justify-between *:content-center border rounded-lg gap-x-4 backdrop-blur shadow-lg bg-secondary/50 dark:bg-secondary/20 transition-all cursor-pointer hover:bg-secondary/70 dark:hover:bg-secondary/50", className)}
+            <motion.button className={cn("flex px-4 py-2 text-center justify-between *:content-center border rounded-lg gap-x-4 backdrop-blur shadow-lg bg-secondary/50 dark:bg-secondary/20 transition-all cursor-pointer hover:bg-secondary/70 dark:hover:bg-secondary/50", className)}
                 initial={false}
                 whileTap={{ scale: 0.95 }} {...props} onClick={() => setOpen(true)}>
                     <span>Search...</span>
                     <kbd className="text-sm rounded-lg border dark:bg-secondary px-2 py-0 font-sans">
                         {platform === 'mac' ? '⌘' : 'Ctrl'} + K
                     </kbd>
-            </motion.div>
+            </motion.button>
             <CommandDialog open={open} onOpenChange={setOpen}>
                 <CommandInput placeholder="Search for article..." />
                 <CommandList>
@@ -64,8 +64,9 @@ export const SearchBar = ({ className, ...props }: { className?: ClassNameValue 
                     </CommandGroup>
                     {Object.entries(sitemap).map(([key, value]) => (
                         <CommandGroup key={key} heading={value.name}>
-                            {value.documents.map((doc, index) => (
+                            {value.documents.map((doc: SitemapDocumentType, index) => (
                                 <CommandItem
+                                    keywords={doc.keywords}
                                     key={index}
                                     onSelect={() => {
                                         run(() => router.push(doc.url))
