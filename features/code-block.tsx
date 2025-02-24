@@ -9,7 +9,7 @@ export const Code = ({ code, words, language, className }: { code: string, words
     return (
         <CodeBlock code={code} language={language} words={words}>
             <div className="relative">
-                <CodeBlock.Code className={cn('dark bg-[#0d1117] p-4 rounded-lg shadow-md border border-border max-h-96 overflow-auto whitespace-pre-wrap text-sm', className)}>
+                <CodeBlock.Code className={cn('dark bg-[#0d1117] p-4 rounded-lg shadow-md border border-border max-h-96 overflow-auto text-sm', className)}>
                 <div className="table-row">
                         <CodeBlock.LineNumber
                             className="table-cell pr-4 text-sm text-gray-500 text-right select-none break-keep" />

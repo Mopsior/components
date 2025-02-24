@@ -16,7 +16,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <nav className="flex fixed top-5 left-1/2 transform -translate-x-1/2 text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 *:rounded-lg *:px-6 *:py-2 text-sans shadow-lg invisible md:visible">
+            <nav className="flex fixed top-5 left-1/2 transform -translate-x-1/2 text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 *:rounded-lg *:px-6 *:py-2 text-sans shadow-lg invisible md:visible z-50">
                 <p className="font-mono font-semibold">mopsior/components</p>
                 <Tabs href={firstComponentURL} selected={pathname.startsWith('/components')}>
                     Components

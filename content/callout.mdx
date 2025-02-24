@@ -5,9 +5,10 @@ description: A callout is a UI element used to highlight important information, 
 import { Code } from '@/features/code-block'
 import { PreviewSwitch } from '@/features/preview-switch'
 import { Callout, CalloutIcon, CalloutContent } from '@/components/custom/callout'
+import { Installation } from '@/features/installation'
+import { ReferenceTable, ReferanceTableHeader, ReferanceTableItem  } from '@/features/reference-table'
 
-<PreviewSwitch language="ts" code={`
-import { cn } from "@/lib/utils";
+export const code = `import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 import type { ClassNameValue } from "tailwind-merge";
 
@@ -60,9 +61,130 @@ export const CalloutContent = ({ children }: { children: ReactNode }) => {
     return (
         <div className={"w-full"}>{children}</div>
     )
-}`}>
-<Callout>
-    <CalloutIcon highlight>💡</CalloutIcon>
-    <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, [and if he lifted his](https://google.com) head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
-</Callout>
+}`
+
+<PreviewSwitch language="ts" code={code}>
+    <Callout>
+        <CalloutIcon highlight>💡</CalloutIcon>
+        <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, [and if he lifted his](https://google.com) head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
 </PreviewSwitch>
+
+## Usage
+<Code language="ts" code={`<Callout>
+    <CalloutIcon></CalloutIcon>
+    <CalloutContent></CalloutContent>
+</Callout>`} />
+
+## Installation
+<Installation
+    disableDependencies
+    code={code}
+    implementation={`import { Callout, CalloutIcon, CalloutContent } from '@/components/ui/<your-path>`} />
+
+## Variants
+### Tip
+<PreviewSwitch className="mt-4" layoutId="variants-tabs-1" language="ts" code={`
+<Callout variant="tip">
+    <CalloutIcon variant="tip">👍</CalloutIcon>
+    <CalloutContent variant="tip">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+</Callout>
+`}>
+    <Callout variant="tip">
+        <CalloutIcon variant="tip">👍</CalloutIcon>
+        <CalloutContent variant="tip">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
+</PreviewSwitch>
+
+### Warning
+<PreviewSwitch className="mt-4" layoutId="variants-tabs-2" language="ts" code={`
+<Callout variant="warning">
+    <CalloutIcon variant="warning">⚠️</CalloutIcon>
+    <CalloutContent variant="warning">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+</Callout>
+`}>
+    <Callout variant="warning">
+        <CalloutIcon variant="warning">⚠️</CalloutIcon>
+        <CalloutContent variant="warning">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
+</PreviewSwitch>
+
+### Important
+<PreviewSwitch className="mt-4" layoutId="variants-tabs-3" language="ts" code={`
+<Callout variant="important">
+    <CalloutIcon variant="important">🚨</CalloutIcon>
+    <CalloutContent variant="important">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+</Callout>
+`}>
+    <Callout variant="important">
+        <CalloutIcon variant="important">🚨</CalloutIcon>
+        <CalloutContent variant="important">One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
+</PreviewSwitch>
+
+### Without icon
+<PreviewSwitch className="mt-4" layoutId="variants-tabs-4" language="ts" code={`
+<Callout>
+    <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+</Callout>
+`}>
+    <Callout>
+        <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
+</PreviewSwitch>
+
+### With icon (without highlight)
+<PreviewSwitch className="mt-4" layoutId="variants-tabs-5" language="ts" code={`
+<Callout>
+    <CalloutIcon>💡</CalloutIcon>
+    <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+</Callout>
+`}>
+    <Callout>
+        <CalloutIcon>💡</CalloutIcon>
+        <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>
+    </Callout>
+</PreviewSwitch>
+
+## Props
+<div className='space-y-8'>
+export const CalloutProps = [
+    { prop: 'children', values: 'ReactNode', description: 'Content of the callout.', required: true },
+    { prop: 'variant', values: ['tip', 'info', 'warning', 'important'], description: 'Color variant of the callout', required: false },
+    { prop: 'rounded', values: ['sm', 'md', 'lg', 'xl', 'full'], description: 'The border radius of the callout.', required:false  },
+    { prop: 'shadow', values: 'boolean', description: 'Whether to show shadow or not.', required: false },
+    { prop: 'className', values: 'string', description: 'Additional styles.', required: false },
+]
+
+<ReferenceTable title="<Callout>" description="Core component" required>
+    <ReferanceTableHeader first="Prop" second="Values" third="Description" />
+    <tbody>
+        <ReferanceTableItem data={CalloutProps} />
+    </tbody>
+</ReferenceTable>
+
+export const CalloutContentProps = [
+    { prop: 'children', values: 'ReactNode', description: 'Content of the callout.', required: true },
+]
+
+<ReferenceTable title="<CalloutContent>" required>
+    <ReferanceTableHeader first="Prop" second="Values" third="Description" />
+    <tbody>
+        <ReferanceTableItem data={CalloutContentProps} />
+    </tbody>
+</ReferenceTable>
+
+export const CalloutIconProps = [
+    { prop: 'children', values: 'ReactNode', description: 'Icon of the callout.', required: true },
+    { prop: 'variant', values: ['tip', 'info', 'warning', 'important'], description: 'Color variant of the callout icon', required: false },
+    { prop: 'highlight', values: 'boolean', description: 'Whether to highlight the icon or not.', required: false },
+    { prop: 'className', values: 'string', description: 'Additional styles.', required: false },
+]
+
+<ReferenceTable title="<CalloutIcon>" description="Icon placed on the left side of component">
+    <ReferanceTableHeader first="Prop" second="Values" third="Description" />
+    <tbody>
+        <ReferanceTableItem data={CalloutIconProps} />
+    </tbody>
+</ReferenceTable>
+</div>

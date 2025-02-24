@@ -244,3 +244,14 @@ p, a, li, ul, h2, h3, h4, h5, h6 {
   text-decoration: underline;
   color: var(--color-prettylights-syntax-constant-other-reference-link);
 }
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

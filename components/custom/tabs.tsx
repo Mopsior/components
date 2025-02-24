@@ -16,7 +16,7 @@ export const Tabs = ({ children, className, shadow = true, size = 'default', ...
     )
 }
 
-export const TabsButtons = ({ children, selected, layoutId = 'tabsSelect', shadow = true, size = 'default', ...props }: { children: ReactNode, selected?: boolean, layoutId?: string, shadow?: boolean, size?: 'default' | 'sm', onClick?: () => void }) => {
+export const TabsButton = ({ children, selected, layoutId = 'tabsSelect', shadow = true, size = 'default', ...props }: { children: ReactNode, selected?: boolean, layoutId?: string, shadow?: boolean, size?: 'default' | 'sm', onClick?: () => void }) => {
     return (
         <button className={cn('transition-all duration-150 relative rounded-lg z-10', {
             'text-primary': selected,
