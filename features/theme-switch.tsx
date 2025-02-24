@@ -3,9 +3,10 @@
 import { LoaderCircle, MonitorCog, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "motion/react"
+import { AnimatePresence } from "motion/react"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import { MotionMonitorCog, MotionMoon, MotionSun } from "@/lib/motion-components"
+import { RightButtons } from "./navbar"
 
 const switchAnimation = {
     initial: { y: 20},
@@ -22,7 +23,7 @@ export const ThemeSwitch = () => {
     }, [])
 
     if (!mounted) {
-        return <LoaderCircle className="animate-spin" />
+        return <LoaderCircle className="animate-spin m-auto" />
     }
 
     const handleThemeChange = () => {
@@ -44,13 +45,15 @@ export const ThemeSwitch = () => {
     return (
         <Tooltip>
             <TooltipTrigger asChild>
-                <div onClick={() => { handleThemeChange() }} className="cursor-pointer overflow-hidden">
-                    <AnimatePresence>
-                        { theme === 'dark' && <MotionMoon initial='initial' exit='exit' animate='animate' variants={switchAnimation}  />}
-                        { theme === 'light' && <MotionSun initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
-                        { theme == 'system' && <MotionMonitorCog initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
-                    </AnimatePresence>
-                </div>
+                <button onClick={() => { handleThemeChange() }}>
+                    <RightButtons className='overflow-hidden'>
+                        <AnimatePresence>
+                            { theme === 'dark' && <MotionMoon initial='initial' exit='exit' animate='animate' variants={switchAnimation}  />}
+                            { theme === 'light' && <MotionSun initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
+                            { theme == 'system' && <MotionMonitorCog initial='initial' exit='exit' animate='animate' variants={switchAnimation} />}
+                        </AnimatePresence>
+                    </RightButtons>
+                </button>
             </TooltipTrigger>
             <TooltipContent>
                 <p>Change theme</p>
