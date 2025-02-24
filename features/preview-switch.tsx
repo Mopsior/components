@@ -15,8 +15,8 @@ export const PreviewSwitch = ({ code, language, children }: { code: string, lang
     return (
         <div className="space-y-5">
             <Tabs>
-                <TabsButtons selected={selected === 'preview'} onClick={() => setSelected('preview')}>Preview</TabsButtons>
-                <TabsButtons selected={selected === 'code'} onClick={() => setSelected('code')}>Code</TabsButtons>
+                <TabsButtons selected={selected === 'preview'} onClick={() => setSelected('preview')} size='sm'>Preview</TabsButtons>
+                <TabsButtons selected={selected === 'code'} onClick={() => setSelected('code')} size='sm'>Code</TabsButtons>
             </Tabs>
             {
                 selected === 'preview' && <div className="rounded-lg border min-h-96 w-full lg:p-10 p-5 relative shadow-sm flex justify-center items-center overflow-x-auto">
