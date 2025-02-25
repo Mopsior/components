@@ -13,10 +13,10 @@ import type { ReactNode } from "react";
 import type { ClassNameValue } from "tailwind-merge";
 
 const calloutColors = {
-    tip: 'bg-green-500/20 border-green-500',
-    info: 'bg-blue-500/20 border-blue-500',
-    warning: 'bg-yellow-500/20 border-yellow-500',
-    important: 'bg-red-500/20 border-red-500',
+    tip: 'bg-green-600/15 border-green-500',
+    info: 'bg-blue-600/15 border-blue-500',
+    warning: 'bg-yellow-600/15 border-yellow-500',
+    important: 'bg-red-600/15 border-red-500',
 }
 
 const bgColors = {
@@ -63,7 +63,7 @@ export const CalloutContent = ({ children }: { children: ReactNode }) => {
     )
 }`
 
-<PreviewSwitch language="ts" code={code}>
+<PreviewSwitch language="ts" code={code} layoutId="callout-preview">
     <Callout>
         <CalloutIcon highlight>💡</CalloutIcon>
         <CalloutContent>One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed into a horrible vermin. He lay on his armour-like back, [and if he lifted his](https://google.com) head a little he could see his brown belly, slightly domed and divided by arches into stiff sections.</CalloutContent>

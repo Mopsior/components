@@ -3,10 +3,10 @@ import type { ReactNode } from "react";
 import type { ClassNameValue } from "tailwind-merge";
 
 const calloutColors = {
-    tip: 'bg-green-500/20 border-green-500',
-    info: 'bg-blue-500/20 border-blue-500',
-    warning: 'bg-yellow-500/20 border-yellow-500',
-    important: 'bg-red-500/20 border-red-500',
+    tip: 'bg-green-600/15 border-green-500',
+    info: 'bg-blue-600/15 border-blue-500',
+    warning: 'bg-yellow-600/15 border-yellow-500',
+    important: 'bg-red-600/15 border-red-500',
 }
 
 const bgColors = {
