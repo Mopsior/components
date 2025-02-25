@@ -1,0 +1,116 @@
+---
+title: Tabs
+description: Tabs can be used to switch between different views or pages.
+---
+import { Installation } from '@/features/installation'
+import { PreviewSwitch } from '@/features/preview-switch'
+import { Ex1, Ex2 } from './component-examples/tabs'
+import { Code } from '@/features/code-block'
+
+export const code = `import { cn } from "@/lib/utils"
+import { span as MotionSpan } from "motion/react-client"
+import { ReactNode } from "react"
+import { ClassNameValue } from "tailwind-merge"
+
+export const Tabs = ({ children, className, shadow = true, size = 'default', ...props }: { children: ReactNode, className?: ClassNameValue, shadow?: boolean, size?: 'default' | 'sm' }) => {
+    return (
+        <div className={cn("flex text-primary bg-secondary rounded-lg text-center justify-center border gap-x-1 p-1 w-fit", {
+            'shadow-md': shadow,
+            'shadow-none': !shadow,
+            'text-base': size === 'default',
+            'text-sm': size === 'sm'
+        }, className)} {...props}>
+            {children}
+        </div>
+    )
+}
+
+export const TabsButton = ({ children, selected, layoutId = 'tabsSelect', shadow = true, size = 'default', ...props }: { children: ReactNode, selected?: boolean, layoutId?: string, shadow?: boolean, size?: 'default' | 'sm', onClick?: () => void }) => {
+    return (
+        <button className={cn('transition-all duration-150 relative rounded-lg z-10', {
+            'text-primary': selected,
+            'text-muted-foreground hover:text-primary': !selected,
+            'text-base px-6 py-2': size === 'default',
+            'text-sm px-4 py-2': size === 'sm'
+        })} {...props} onClick={props.onClick}>
+            {children}
+            {selected && <MotionSpan
+                layoutId={layoutId}
+                initial={false}
+                transition={{ type: "spring" }}
+                className={cn('absolute inset-0 -z-10 bg-background rounded-lg hover:cursor-default', {
+                    'shadow-md': shadow,
+                    'shadow-none': !shadow
+                })}
+            ></MotionSpan>}
+        </button>
+    )
+}`
+
+<PreviewSwitch code={code} language="ts" layoutId="tabs-preview">
+<Ex1 />
+</PreviewSwitch>
+
+## Usage
+<Code language="ts" code={`
+<Tabs>
+    <TabsButton selected></TabsButton>
+    <TabsButton></TabsButton>
+</Tabs>
+`} />
+
+## Installation
+<Installation
+    npm="npm install motion"
+    yarn="yarn add motion"
+    pnpm="pnpm add motion"
+    bun="bun add motion"
+    code={code}
+    language="ts"
+    implementation="import { Tabs, TabsButton } from '@/components/ui/<your-path>" />
+
+## Example
+<PreviewSwitch language="ts" code={`
+const [selected, setSelected] = useState<'login' | 'signup'>('login')
+
+return (
+    <div className="relative">
+        <Tabs className="mx-auto" disableOverflow>
+            <TabsButton layoutId="ex2" selected={selected === 'login'} onClick={() => setSelected('login')}>Login</TabsButton>
+            <TabsButton layoutId="ex2" selected={selected === 'signup'} onClick={() => setSelected('signup')}>Signup</TabsButton>
+        </Tabs>
+        { selected === 'login' && (
+            <div className="border p-4 rounded-lg bg-background mt-4">
+                <h2 className="text-2xl font-semibold tracking-tight">Log in</h2>
+                <p className="text-sm text-muted-foreground">Log in to enter Acme</p>
+                <div className="mt-4">
+                    <Label htmlFor="login">Login</Label>
+                    <Input name="login" id="login" type="email" className="mb-4" />
+                    <Label htmlFor="password">Password</Label>
+                    <Input name="password" id="password" type="password"/>
+                    <Button variant={'outline'} className="mt-4">Log in</Button>
+                </div>
+            </div>
+        )}
+        { selected === 'signup' && (
+            <div className="border p-4 rounded-lg bg-background mt-4">
+                <h2 className="text-2xl font-semibold tracking-tight">Create account</h2>
+                <p className="text-sm text-muted-foreground">Create account and then log in to Acme</p>
+                <div className="mt-4">
+                    <Label htmlFor="register">Register</Label>
+                    <Input name="register" id="register" type="email" className="mb-4" />
+                    <Label htmlFor="password">Password</Label>
+                    <Input name="password" id="password" type="password"/>
+                    <div className="mt-4 flex gap-x-2">
+                        <Button>Register</Button>
+                        <Button variant={'outline'}>Forgot password?</Button>
+                    </div>
+                </div>
+            </div>
+        ) }
+    </div>
+)`}>
+<Ex2 />
+</PreviewSwitch>
+
+{/* Callout -> can be used on server and client */}

@@ -1,33 +1,34 @@
 'use client'
 
 import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from "@/components/ui/drawer"
-import { sitemap } from "@/content/sitemap"
+import { sitemap, SitemapSection } from "@/content/sitemap"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { cn } from "@/lib/utils"
 import { Github, Menu } from "lucide-react"
 import Link from "next/link"
 import { ThemeSwitch } from "./theme-switch"
 import { Suspense, useState } from "react"
 import { usePathname } from "next/navigation"
+import { Badge } from "./badge"
 
 const NavigationLinks = ({ onClose }: { onClose: () => void }) => {
     const pathname = usePathname()
 
     return (
         <>
-            {Object.entries(sitemap).map(([key, value]) => (
+            {Object.entries(sitemap as Record<string, SitemapSection>).map(([key, value]) => (
                 <div className="mt-6 text-left items-start w-full flex flex-col gap-y-2" key={key}>
                     <h4 className="font-semibold mt-2">{value.name}</h4>
                     {value.documents.map((doc, index) => (
                         <Link
                             href={doc.url}
                             key={index}
-                            className={cn('text-foreground cursor-pointer',
-                                pathname === doc.url && 'border-b-2 border-primary'
-                            )}
+                            className="text-foreground cursor-pointer flex gap-x-2"
                             onClick={onClose}
                         >
-                            {doc.name}
+                            <span className={pathname === doc.url ? "border-b-2 border-primary" : ''}>{doc.name}</span>
+                            {doc.badge && (
+                                <Badge type={doc.badge}/>
+                            )}
                         </Link>
                     ))}
                 </div>

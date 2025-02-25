@@ -105,10 +105,3 @@ const StepIdentifier = ({ count }: { count?: number }) => (
         <span>{count}</span>
     </div>
 )
-
-// based on https://karrix.dev/components/info-card
-
-// Steps:
-// 1. Install all dependencies (not required)
-// 2. Copy code
-// 3. How to use it
