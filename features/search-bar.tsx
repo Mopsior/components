@@ -1,7 +1,7 @@
 'use client'
 
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
-import { sitemap, SitemapDocumentType } from "@/content/sitemap"
+import { sitemap, SitemapSection } from "@/content/sitemap"
 import { cn } from "@/lib/utils"
 import { getPlatform } from "@/utils/get-platform"
 import { FileText, Github, House, MonitorCog, Moon, Sun } from "lucide-react"
@@ -62,9 +62,9 @@ export const SearchBar = ({ className, ...props }: { className?: ClassNameValue 
                                 run(() => router.push('https://github.com/mopsior/components'))
                             }}><Github />Github Project Repository</CommandItem>
                     </CommandGroup>
-                    {Object.entries(sitemap).map(([key, value]) => (
+                    {Object.entries(sitemap as Record<string, SitemapSection>).map(([key, value]) => (
                         <CommandGroup key={key} heading={value.name}>
-                            {value.documents.map((doc: SitemapDocumentType, index) => (
+                            {value.documents.map((doc, index) => (
                                 <CommandItem
                                     keywords={doc.keywords}
                                     key={index}
