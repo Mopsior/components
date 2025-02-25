@@ -21,7 +21,7 @@ export const PreviewSwitch = ({ code, language, children, layoutId, className }:
                 <TabsButton selected={selected === 'code'} onClick={() => setSelected('code')} size='sm' layoutId={layoutId || 'preview-tabs-1'}>Code</TabsButton>
             </Tabs>
             {
-                selected === 'preview' && <div className="rounded-lg border min-h-96 w-full lg:p-10 p-5 relative shadow-sm flex justify-center items-center overflow-x-auto">
+                selected === 'preview' && <div className="rounded-lg border min-h-96 w-full lg:p-10 p-5 relative shadow-sm flex justify-center items-center overflow-x-auto dots">
                     {children}
                 </div>
             }

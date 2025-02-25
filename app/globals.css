@@ -13,6 +13,10 @@ p, a, li, ul, h2, h3, h4, h5, h6 {
 }
 
 @layer utilities {
+  .dots {
+    @apply bg-[radial-gradient(#e3e3e3_1.8px,_white_1.8px)] md:bg-[radial-gradient(#e3e3e3_1.2px,_white_1.2px)] [background-size:_18px_18px] dark:bg-[radial-gradient(#1a1a1a_1.8px,_black_1.8px)] md:dark:bg-[radial-gradient(#1a1a1a_1.2px,_black_1.2px)] dark:[background-size:_18px_18px];
+  }
+
   code:not(pre code) {
     @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
   }
