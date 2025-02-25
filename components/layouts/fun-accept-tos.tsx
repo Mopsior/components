@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 'use client'
 import { motion } from "motion/react"
 import { Button } from "../ui/button"
@@ -46,7 +47,7 @@ export const FunAcceptTosLayout = () => {
                         required
                         id="checkbox"
                         ref={tosCheckboxRef}
-                        onClick={(e) => {
+                        onClick={() => {
                             if (!tosExpanded && tosCheckboxRef.current) tosCheckboxRef.current.checked = false
                             setTosExpanded(!tosExpanded)
                         }}
