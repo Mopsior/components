@@ -43,7 +43,11 @@ export const sitemap = {
             {
                 name: 'Delete button',
                 url: '/components/layout-delete-button',
+            },
+            {
+                name: 'ToS scroll',
+                url: '/components/layout-tos-scroll',
             }
-        ]
+        ],
     }
 }

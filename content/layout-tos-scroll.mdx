@@ -1,0 +1,107 @@
+---
+title: Register ToS Scroll
+description: Lawyers love this page I guess...
+---
+
+import { PreviewSwitch } from '@/features/preview-switch'
+import { FunAcceptTosLayout } from '@/components/layouts/fun-accept-tos'
+import { Callout, CalloutContent } from '@/components/custom/callout'
+
+export const code = `
+'use client'
+import { motion } from "motion/react"
+import { Button } from "../ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { useRef, useState, useEffect } from "react"
+import { cn } from "@/lib/utils"
+
+export const FunAcceptTosLayout = () => {
+    const [isHovered, setIsHovered] = useState(false)
+    const [tosExpanded, setTosExpanded] = useState(false)
+    const tosRef = useRef<HTMLDivElement>(null)
+    const tosCheckboxRef = useRef<HTMLInputElement>(null)
+
+    useEffect(() => {
+        if (tosExpanded && tosRef.current) {
+            setTimeout(() => {
+                window.scrollTo({ behavior: 'smooth', top: tosRef.current?.offsetHeight })
+            }, 300)
+        }
+    }, [tosExpanded])
+
+    return (
+        <div className="mx-auto md:mt-20 mt-10 py-20">
+            <div className="p-6 border rounded-lg shadow-md w-fit bg-background mx-auto">
+                <h2 className="text-2xl font-semibold leading-none tracking-tight">Create an account</h2>
+                <p className="text-sm text-muted-foreground">Create account to enter awesome world of Acme</p>
+                <div className="mt-4 flex flex-col gap-y-4 relative">
+                    <div className="space-y-1">
+                        <Label htmlFor="username">Username</Label>
+                        <Input id="username" type="text" required placeholder="ex. CatThrower23" />
+                    </div>
+                    <div className="space-y-1">
+                        <Label htmlFor="email">E-mail</Label>
+                        <Input id="email" type="email" required placeholder="ex. not.real.admin@example.com" />
+                    </div>
+                    <div className="space-y-1">
+                        <Label htmlFor="password">Password</Label>
+                        <Input id="password" type="password" required placeholder="***********" />
+                    </div>
+                    <motion.div
+                        className="flex items-center gap-x-2"
+                        onHoverStart={() => setIsHovered(true)}
+                        onHoverEnd={() => setIsHovered(false)}>
+                        <input
+                            type="checkbox"
+                            required
+                            id="checkbox"
+                            ref={tosCheckboxRef}
+                            onClick={(e) => {
+                                if (!tosExpanded && tosCheckboxRef.current) tosCheckboxRef.current.checked = false
+                                setTosExpanded(!tosExpanded)
+                            }}
+                            className="size-4" />
+                        <Label htmlFor="checkbox" className={cn("leading-none mt-[2px]", {
+                            'text-red-500': tosExpanded
+                        })}>Accept <a href="#" className="underline underline-offset-2">Terms of Service</a></Label>
+                    </motion.div>
+                    <motion.div
+                        ref={tosRef}
+                        className="max-w-96 rounded-lg p-4 border relative overflow-auto shadow-sm h-0"
+                        initial={{ height: 0, paddingTop: 0, paddingBottom: 0, borderWidth: 0 }}
+                        animate={{
+                            height: tosExpanded ? 'auto' : isHovered ? 100 : 0,
+                            paddingTop: (isHovered || tosExpanded) ? 16: 0,
+                            paddingBottom: (isHovered || tosExpanded) ? 16: 0,
+                            borderWidth: (isHovered || tosExpanded) ? 1 : 0
+                        }}
+                        layout>
+                        <ToSHTML />
+                        {!tosExpanded && <div className="absolute bottom-0 right-0 left-0 w-full h-12 bg-gradient-to-t from-primary/20 to-transparent" /> }
+                    </motion.div>
+                    <Button type="submit" onClick={() => {
+                        if (!tosCheckboxRef.current?.checked) return
+                        else alert('good job')
+                    }}>Submit</Button>
+                </div>
+            </div>
+        </div>
+    )
+}
+`
+
+<PreviewSwitch code={code} language="ts" layoutId="lay-delete-button-preview">
+<FunAcceptTosLayout />
+</PreviewSwitch>
+
+<Callout variant="info">
+    <CalloutContent>
+        This is <b>pre-made layout!</b> It's not a ready to copy component for your project, but ready idea to create own element on your page. It's close to other components, but it's not that simple to customize with props.
+    </CalloutContent>
+</Callout>
+
+## Stack
+- `motion`
+- `tailwind`
+- `shadcn/ui` for color variables
